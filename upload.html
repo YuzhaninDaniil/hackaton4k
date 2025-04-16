@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Файл загружен</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О нас</a>
+        <a href="contact.html">Контакты</a>
+    </nav>
+    
+    <div class="content">
+        <h1>Файл успешно загружен!</h1>
+        <p class="success-message"></p>
+        <a href="index.html" class="home-link">Вернуться на главную страницу</a>
+    </div>
+
+    <script>
+        // Получаем имя файла из URL (если нужно)
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileName = urlParams.get('file');
+        
+        if (fileName) {
+            document.querySelector('.success-message').textContent += ` Файл "${fileName}" был успешно загружен.`;
+        }
+    </script>
+</body>
+</html>

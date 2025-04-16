@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О нас</a>
+        <a href="contact.html">Контакты</a>
+    </nav>
+
+    <div class="content">
+        <h1>Добро пожаловать на наш сайт!</h1>
+        <p>Сайт предназначен для идентификации расположения важной информации документов (титульных листов, обложек, оборотных сторон титульников и т.д)</p>       
+        <div class="upload-container">
+            <form id="uploadForm" action="upload.html" method="get">
+                <label for="fileToUpload" class="file-label">Выбрать файл</label>
+                <input type="file" name="fileToUpload" id="fileToUpload" class="file-input" required>
+                <button type="submit" class="submit-btn">Загрузить файл</button>
+                <div id="fileName" class="file-name"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('fileToUpload').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'Файл не выбран';
+            document.getElementById('fileName').textContent = 'Выбран файл: ' + fileName;
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fileInput = document.getElementById('fileToUpload');
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                window.location.href = `upload.html?file=${encodeURIComponent(fileName)}`;
+            }
+        });
+    </script>
+</body>
+</html>
